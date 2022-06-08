@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 #### Librerías
-```{r carga-paquetes, message=FALSE}
+```{r carga-paquetes, message=FALSE, echo=FALSE}
 library(dplyr)
 library(ggplot2)
 library(plotly)
@@ -19,24 +19,34 @@ library(leaflet)
 library(DT)
 ```
 
-```{r directorio}
-setwd("C:/Users/c15181/Prácticas/Práctica felinos/Datos-de-felinos-de-Costa-Rica")
+```{r directorio, echo=FALSE}
+setwd("C:/Users/c15181/Practica felinos/Datos-de-felinos-de-Costa-Rica")
 
 ```
 
 
-```{r datos}
-felinos <- felinos.csv
+```{r datos, echo=FALSE}
+felinos <-
+  st_read(
+    "C:/Users/c15181/Practica felinos/Datos-de-felinos-de-Costa-Rica/felinos.csv",
+    options = c(
+      "X_POSSIBLE_NAMES=decimalLongitude", # columna de longitud decimal
+      "Y_POSSIBLE_NAMES=decimalLatitude"   # columna de latitud decimal
+    ),
+    quiet = TRUE
+  )
 
-provincias <- provincias.geojson
+provincias <-
+  st_read(
+    "C:/Users/c15181/Practica felinos/Datos-de-felinos-de-Costa-Rica/provincias.geojson",
+    quiet = TRUE # para evitar el despliegue de mensajes
+  )
 ```
-
-
 
 ## Tabla
 
-```{r}
-felinos
+```{r tabla, echo=FALSE}
+felinos %>% dplyr::select(species, eventDate, stateProvince, locality, decimalLongitude, decimalLatitude) %>% st_drop_geometry() %>% datatable(colnames = c("Especie","Fecha","Provincia","Localidad","Longitud","Latitud"), options = list(pagelenght =10))
 ```
 
 ## Gráfico
