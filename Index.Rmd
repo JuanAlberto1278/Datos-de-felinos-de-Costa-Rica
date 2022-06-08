@@ -1,0 +1,53 @@
+---
+title: "Datos de felinos de Costa Rica"
+author: "Juan Alberto Mora"
+date: '2022-06-08'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### Librerías
+```{r carga-paquetes, message=FALSE}
+library(dplyr)
+library(ggplot2)
+library(plotly)
+library(sf)
+library(leaflet)
+library(DT)
+```
+
+```{r directorio}
+setwd("C:/Users/c15181/Prácticas/Práctica felinos/Datos-de-felinos-de-Costa-Rica")
+
+```
+
+
+```{r datos}
+felinos <- felinos.csv
+
+provincias <- provincias.geojson
+```
+
+
+
+## Tabla
+
+```{r}
+felinos
+```
+
+## Gráfico
+
+```{r}
+
+```
+
+## Mapa
+
+```{r}
+
+```
+
